@@ -1,21 +1,12 @@
 version: '3.8'
 
 services:
-  app:
-    build: .
-    ports:
-      - "3000:3000"
-    environment:
-      DATABASE_URL: "postgresql://user:password@db:5432/giftexchange"
-    depends_on:
-      - db
-
   db:
     image: postgres:15
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: giftexchange
+      POSTGRES_DB: holidaycircle
     ports:
       - "5432:5432"
     volumes:

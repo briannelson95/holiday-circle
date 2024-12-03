@@ -6,7 +6,8 @@ export default function Navbar() {
         <nav>
             <Link href={'/'}>Home</Link>
             <Link href={'/dashboard'}>Dashboard</Link>
-            <Link href={'/signin'}>Sign In</Link>
+            <Link href={'/login'}>Login</Link>
+            <Link href={'/signup'}>Sign Up</Link>
         </nav>
     )
 }

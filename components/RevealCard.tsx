@@ -34,7 +34,7 @@ export default function RevealCard({name}: {name: string}) {
         >
             {/* Card Container */}
             <div
-                className={`relative w-full h-full transition-transform duration-500 transform-style-preserve-3d shadow-md rounded-lg`}
+                className={`relative w-full h-full transition-transform duration-500 transform-style-preserve-3d rounded-lg`}
                 style={{
                 transform: `
                     perspective(1000px)
@@ -44,13 +44,16 @@ export default function RevealCard({name}: {name: string}) {
                 `,
                 }}
             >
+                {/* Shimmer Effect */}
+                <div className="absolute inset-0 z-10 pointer-events-none shine-overlay" />
+                
                 {/* Front of the Card */}
-                <div className="absolute w-full h-full bg-gray-200 rounded-lg flex items-center justify-center backface-hidden">
+                <div className="absolute w-full h-full bg-primary-200 text-white shadow-md shadow-primary-500 rounded-lg flex items-center justify-center backface-hidden">
                     <h2 className="text-xl font-bold">Click to Reveal</h2>
                 </div>
 
                 {/* Back of the Card */}
-                <div className="absolute w-full h-full bg-green-300 rounded-lg flex items-center justify-center backface-hidden transform rotate-y-180">
+                <div className="absolute w-full h-full bg-accent-500 shadow-md shadow-accent-500 rounded-lg flex items-center justify-center backface-hidden transform rotate-y-180">
                     <div className='flex-col'>
                         <p className='font-light'>Your Draw:</p>
                         <h2 className="text-xl text-center font-bold">{name}</h2>

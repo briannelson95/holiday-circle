@@ -29,12 +29,12 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-brand-snow-drift">
+        <div className="min-h-screen flex items-center justify-center bg-background-950">
             <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
                 <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
                 <form onSubmit={handleLogin} className="space-y-4">
                 <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                    <label htmlFor="email" className="block text-sm font-medium text-text-50">
                     Email
                     </label>
                     <input
@@ -43,7 +43,7 @@ export default function LoginPage() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
-                        className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-brand-myrtle-green focus:border-brand-myrtle-green"
+                        className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-primary-200 focus:border-primary-200"
                     />
                 </div>
                 <div>
@@ -56,14 +56,16 @@ export default function LoginPage() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         required
-                        className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-brand-myrtle-green focus:border-brand-myrtle-green"
+                        className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-primary-200 focus:border-primary-200"
                     />
                 </div>
                 {error && <p className="text-red-500 text-sm">{error}</p>}
                 <button
                     type="submit"
-                    className="w-full bg-brand-myrtle-green hover:bg-brand-midnight-green text-white font-medium py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+                    className="w-full relative bg-accent-500 hover:bg-accent-400 text-background-950 font-medium py-2 px-4 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200 ease-in-out disabled:bg-background-700 disabled:text-background-80"
+                    disabled={email && password ? false : true}
                 >
+                    {email && password && <div className="absolute inset-0 z-10 pointer-events-none shine-overlay" />}
                     Login
                 </button>
                 </form>

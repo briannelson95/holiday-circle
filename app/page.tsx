@@ -7,7 +7,7 @@ export default function Home() {
     <main className="max-w-4xl mx-auto">
       <h1 className="text-2xl font-bold">Welcome to Holiday Circle</h1>
       <p>Create and manage your gift exchange events easily.</p>
-      <Link href={'/auth/signin'}>Get started</Link>
+      <Link href={'/login'}>Get started</Link>
       <hr />
       <section className="flex justify-center p-4">
         <RevealCard name="Brian"/>

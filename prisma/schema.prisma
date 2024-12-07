@@ -24,6 +24,7 @@ model GiftExchange {
   created_at          DateTime    @default(now())
   host_id             String
   host                User        @relation(fields: [host_id], references: [id])
+  share_id            String      @unique
   title               String
   budget              Float
   description         String

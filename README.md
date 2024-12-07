@@ -8,7 +8,7 @@ A self-hosted gift exhang. The idea is a webapp that will allow users to spin up
 - Docker
 
 ## To Do
-- [ ] Ability to logout
+- [x] Ability to logout
 - [ ] Route the newly added database data to the correct exchange page
 - [ ] Styling
 

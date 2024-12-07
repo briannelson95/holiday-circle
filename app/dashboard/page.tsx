@@ -4,6 +4,7 @@ import { Users, GiftExchanges, GuestList } from '@/exampleData'
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import { useUser } from '../context/UserContext';
 
 type GiftExchange = {
     id: string;
@@ -15,38 +16,33 @@ type GiftExchange = {
 };
 
 export default function Dashboard() {
+    const { user, setUser, isLoading, setIsLoading } = useUser();
+
     const [exchanges, setExchanges] = useState<GiftExchange[]>([]);
-    const [loading, setLoading] = useState<boolean>(true);
     const router = useRouter();
 
     useEffect(() => {
         const fetchExchanges = async () => {
             try {
-                const res = await fetch("/api/exchanges");
-
-                if (res.status === 401) {
-                    // Redirect to login if unauthorized
-                    router.push("/login");
-                    return;
-                }
-
-                if (!res.ok) {
-                    throw new Error("Failed to fetch exchanges");
-                }
-
+                const res = await fetch("/api/exchanges", { method: "GET" });
                 const data = await res.json();
-                setExchanges(data);
+
+                if (res.ok) {
+                    setExchanges(data);
+                } else {
+                    console.error("Failed to fetch exchanges:", data.error);
+                }
             } catch (error) {
                 console.error(error);
             } finally {
-                setLoading(false);
+                setIsLoading(false);
             }
         };
 
         fetchExchanges();
     }, [router]);
 
-    if (loading) {
+    if (isLoading) {
         return <>Loading...</>;
     }
 
@@ -54,21 +50,12 @@ export default function Dashboard() {
         return <>No gift exchanges found.</>;
     }
 
-    // const uuid = "123abc";
-
-    // const user = Users.find((user) => user.uuid === uuid);
-
-    // // Step 1: Get the exchange IDs the user is part of
-    // const userExchanges = GuestList.filter(guest => guest.user_id === user?.uuid)
-    //     .map(guest => guest.exchange_id);
-
-    // // Step 2: Use the exchange IDs to find the corresponding GiftExchanges
-    // const userGiftExchanges = GiftExchanges.filter(exchange => 
-    //     userExchanges.includes(exchange.id)
-    // );
-
     return (
         <div className="p-4">
+            <h1 className='text-2xl font-bold'>
+                Welcome, {user?.name || "Guest"}!
+            </h1>
+            
             <h1 className="text-2xl font-bold">Your Gift Exchanges</h1>
             <ul className="mt-4 space-y-4">
                 {exchanges.map((exchange) => (

@@ -14,15 +14,13 @@ export async function GET(req: Request) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // Fetch user-related exchanges
-    const exchanges = await prisma.guestList.findMany({
-        where: { user_id: authToken },
-        include: {
-            exchange: true, // Includes related exchange data
-        },
+    const user = await prisma.user.findUnique({
+        where: { id: authToken },
     });
 
-    return NextResponse.json(
-        exchanges.map((guestList) => guestList.exchange)
-    );
+    if (!user) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    return NextResponse.json(user); // Return only the user
 }

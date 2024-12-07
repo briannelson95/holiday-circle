@@ -37,6 +37,7 @@ A self-hosted gift exhang. The idea is a webapp that will allow users to spin up
     - Not a general wish list as exchanges can have different budgets
     - Inside the exchange you'll only see the wish list of the person for that unique exchange
     - [ ] Option to "search" or add items you've added to other exchanges so you don't have to add something more than once
+- [ ] Main App run on port `:2525`, optional prisma stuido run on `:2425`
 
 
 #### Notes

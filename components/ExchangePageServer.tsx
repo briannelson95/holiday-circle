@@ -2,14 +2,15 @@
 import React from 'react';
 import { GiftExchanges, GuestList } from '@/exampleData';
 import ExchangePageClient from './ExchangePageClient';
+import { useUser } from '@/app/context/UserContext';
 
 export default async function ExchangePageServer({
     params,
 }: {
     params: { id: string };
 }) {
+    const { user, setUser, isLoading, setIsLoading } = useUser();
     const id = (await params).id;
-    const user = "123abc"; // Mocked user, replace with actual user data from auth.
 
     // Fetch the specific exchange
     const exchange = GiftExchanges.find((exchange) => exchange.id === id) || null;

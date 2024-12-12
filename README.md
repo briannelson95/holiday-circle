@@ -25,6 +25,8 @@ A self-hosted gift exhang. The idea is a webapp that will allow users to spin up
 ### Whats Broken
 - `/request-reset` sends a 404 and doesn't log anything in the console as expected
 - `/api/login/route.ts` has a type error `Argument of type 'number' is not assignable to parameter of type 'string'.`
+- unable to view the contents of a single exchange `/exchange/[id]` even though the user has the correct permissions
+    - `This comparison appears to be unintentional because the types 'string' and 'User | null' have no overlap.`
 
 ## Ideal Features
 - [ ] Ability to install and run with docker `docker-compose pull && docker-compose up -d`
